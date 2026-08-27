@@ -7,8 +7,16 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "argon2": "^0.45.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "node-pg-migrate": "^9.0.0",
+    "nodemailer": "^9.0.5",
+    "pg": "^8.23.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "resend": "^6.24.0",
     "web-vitals": "^3.1.0"
   },
   "overrides": {
@@ -19,7 +27,20 @@
     "start": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "migrate:create": "node-pg-migrate create -m server/migrations",
+    "migrate:up": "node-pg-migrate up -m server/migrations -f server/migrate.config.cjs",
+    "migrate:down": "node-pg-migrate down -m server/migrations -f server/migrate.config.cjs",
+    "migrate:redo": "node-pg-migrate redo -m server/migrations -f server/migrate.config.cjs",
+    "migrate:db:create": "node-pg-migrate db create",
+    "migrate:db:status": "node-pg-migrate db status",
+    "migrate:db:seed": "node-pg-migrate db seed -m server/migrations -f server/migrate.config.cjs",
+    "migrate:db:seed:undo": "node-pg-migrate db seed:undo -m server/migrations -f server/migrate.config.cjs",
+    "migrate:db:seed:status": "node-pg-migrate db seed:status -m server/migrations -f server/migrate.config.cjs",
+    "migrate:db:seed:create": "node-pg-migrate db seed:create -m server/migrations ",
+    "migrate:db:seed:reset": "node-pg-migrate db seed:reset -m server/migrations -f server/migrate.config.cjs",
+    "migrate:db:seed:up": "node-pg-migrate db seed:up -m server/migrations -f server/migrate.config.cjs",
+    "migrate:db:seed:down": "node-pg-migrate db seed:down -m server/migrations -f server/migrate.config.cjs"
   },
   "eslintConfig": {
     "extends": [
